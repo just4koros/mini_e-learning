@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini E-learning Platform</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    header, footer {
+      background: #333;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    main {
+      padding: 2em;
+    }
+    .course-list button, .course-detail button, .auth button {
+      display: block;
+      margin: 1em auto;
+      padding: 1em;
+      width: 80%;
+      border: none;
+      border-radius: 5px;
+      background: #ddd;
+      cursor: pointer;
+    }
+    .course-detail, .auth {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mini E-learning Platform</h1>
+  </header>
+
+  <main>
+    <section class="home">
+      <p>Welcome to your e-learning platform! Browse available courses below.</p>
+      <div class="course-list"></div>
+      <button onclick="showAuth()">Log In</button>
+    </section>
+
+    <section class="course-detail">
+      <h2 id="course-title"></h2>
+      <p id="course-desc"></p>
+      <p id="course-progress"></p>
+      <button onclick="markCompleted()">Mark as Completed</button>
+      <button onclick="goHome()">Back to Courses</button>
+    </section>
+
+    <section class="auth">
+      <h2>Login / Sign Up</h2>
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button onclick="goHome()">Submit</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 VibeCoding</p>
+  </footer>
+
+  <script>
+    const courses = [
+      {
+        title: "Intro to Web Development",
+        description: "Learn HTML, CSS, and basic JavaScript to build your first website.",
+        progress: "0 of 5 lessons completed"
+      },
+      {
+        title: "JavaScript for Interactivity",
+        description: "Make your site dynamic with DOM manipulation and event listeners.",
+        progress: "0 of 5 lessons completed"
+      },
+      {
+        title: "AI-Assisted Coding with Copilot",
+        description: "Use AI to write, debug, and improve your code faster.",
+        progress: "0 of 5 lessons completed"
+      }
+    ];
+
+    const courseListDiv = document.querySelector(".course-list");
+    const homeSection = document.querySelector(".home");
+    const detailSection = document.querySelector(".course-detail");
+    const authSection = document.querySelector(".auth");
+
+    const titleEl = document.getElementById("course-title");
+    const descEl = document.getElementById("course-desc");
+    const progressEl = document.getElementById("course-progress");
+
+    let currentCourse = null;
+
+    function renderCourses() {
+      courseListDiv.innerHTML = "";
+      courses.forEach((course, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = course.title;
+        btn.onclick = () => showCourse(index);
+        courseListDiv.appendChild(btn);
+      });
+    }
+
+    function showCourse(index) {
+      currentCourse = index;
+      titleEl.textContent = courses[index].title;
+      descEl.textContent = courses[index].description;
+      progressEl.textContent = courses[index].progress;
+      homeSection.style.display = "none";
+      detailSection.style.display = "block";
+    }
+
+    function markCompleted() {
+      courses[currentCourse].progress = "Completed ✅";
+      progressEl.textContent = courses[currentCourse].progress;
+    }
+
+    function goHome() {
+      detailSection.style.display = "none";
+      authSection.style.display = "none";
+      homeSection.style.display = "block";
+      renderCourses();
+    }
+
+    function showAuth() {
+      homeSection.style.display = "none";
+      authSection.style.display = "block";
+    }
+
+    renderCourses();
+  </script>
+</body>
+</html>
