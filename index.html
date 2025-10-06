@@ -20,9 +20,21 @@
     main {
       padding: 2em;
     }
+    .course-list div {
+      margin-bottom: 2em;
+      background: white;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .course-list img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5em;
+    }
     .course-list button, .course-detail button, .auth button {
       display: block;
-      margin: 1em auto;
+      margin: 0.5em auto;
       padding: 1em;
       width: 80%;
       border: none;
@@ -32,6 +44,11 @@
     }
     .course-detail, .auth {
       display: none;
+    }
+    #course-image {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1em;
     }
   </style>
 </head>
@@ -48,6 +65,7 @@
     </section>
 
     <section class="course-detail">
+      <img id="course-image" />
       <h2 id="course-title"></h2>
       <p id="course-desc"></p>
       <p id="course-progress"></p>
@@ -72,17 +90,20 @@
       {
         title: "Intro to Web Development",
         description: "Learn HTML, CSS, and basic JavaScript to build your first website.",
-        progress: "0 of 5 lessons completed"
+        progress: "0 of 5 lessons completed",
+        image: "https://copilot.microsoft.com/th/id/BCO.c12b24aa-e09e-4daa-8009-1c9a0e4aed72.png"
       },
       {
         title: "JavaScript for Interactivity",
         description: "Make your site dynamic with DOM manipulation and event listeners.",
-        progress: "0 of 5 lessons completed"
+        progress: "0 of 5 lessons completed",
+        image: "https://copilot.microsoft.com/th/id/BCO.c42e38c3-c69d-4fb1-90c8-2649de29e8f5.png"
       },
       {
         title: "AI-Assisted Coding with Copilot",
         description: "Use AI to write, debug, and improve your code faster.",
-        progress: "0 of 5 lessons completed"
+        progress: "0 of 5 lessons completed",
+        image: "https://copilot.microsoft.com/th/id/BCO.fe07c56c-8d82-4f39-845a-8dbc76b495aa.png"
       }
     ];
 
@@ -94,16 +115,25 @@
     const titleEl = document.getElementById("course-title");
     const descEl = document.getElementById("course-desc");
     const progressEl = document.getElementById("course-progress");
+    const imageEl = document.getElementById("course-image");
 
     let currentCourse = null;
 
     function renderCourses() {
       courseListDiv.innerHTML = "";
       courses.forEach((course, index) => {
+        const container = document.createElement("div");
+        const img = document.createElement("img");
+        img.src = course.image;
+        img.alt = course.title;
+
         const btn = document.createElement("button");
         btn.textContent = course.title;
         btn.onclick = () => showCourse(index);
-        courseListDiv.appendChild(btn);
+
+        container.appendChild(img);
+        container.appendChild(btn);
+        courseListDiv.appendChild(container);
       });
     }
 
@@ -112,6 +142,7 @@
       titleEl.textContent = courses[index].title;
       descEl.textContent = courses[index].description;
       progressEl.textContent = courses[index].progress;
+      imageEl.src = courses[index].image;
       homeSection.style.display = "none";
       detailSection.style.display = "block";
     }
