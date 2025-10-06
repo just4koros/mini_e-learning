@@ -27,14 +27,13 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-.course-list img, #course-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 0.5em;
-  display: block;
-}
+    .course-list img, #course-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 0.5em;
+      display: block;
     }
     .course-list button, .course-detail button, .auth button {
       display: block;
@@ -49,10 +48,13 @@
     .course-detail, .auth {
       display: none;
     }
-    #course-image {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1em;
+    input {
+      display: block;
+      margin: 0.5em auto;
+      padding: 0.8em;
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
@@ -90,26 +92,26 @@
   </footer>
 
   <script>
-const courses = [
-  {
-    title: "Intro to Web Development",
-    description: "Learn HTML, CSS, and basic JavaScript to build your first website.",
-    progress: "0 of 5 lessons completed",
-    image: "https://just4koros.github.io/mini_e-learning/e-learning/Copilot_20251005_181141.png"
-  },
-  {
-    title: "JavaScript for Interactivity",
-    description: "Make your site dynamic with DOM manipulation and event listeners.",
-    progress: "0 of 5 lessons completed",
-    image: "https://just4koros.github.io/mini_e-learning/e-learning/Copilot_20251005_181143.png"
-  },
-  {
-    title: "AI-Assisted Coding with Copilot",
-    description: "Use AI to write, debug, and improve your code faster.",
-    progress: "0 of 5 lessons completed",
-    image: "https://just4koros.github.io/mini_e-learning/e-learning/Copilot_20251005_181146.png"
-  }
-];
+    const courses = [
+      {
+        title: "Intro to Web Development",
+        description: "Learn HTML, CSS, and basic JavaScript to build your first website.",
+        progress: "0 of 5 lessons completed",
+        image: "https://just4koros.github.io/mini_e-learning/e-learning/Copilot_20251005_181141.png"
+      },
+      {
+        title: "JavaScript for Interactivity",
+        description: "Make your site dynamic with DOM manipulation and event listeners.",
+        progress: "0 of 5 lessons completed",
+        image: "https://just4koros.github.io/mini_e-learning/e-learning/Copilot_20251005_181143.png"
+      },
+      {
+        title: "AI-Assisted Coding with Copilot",
+        description: "Use AI to write, debug, and improve your code faster.",
+        progress: "0 of 5 lessons completed",
+        image: "https://just4koros.github.io/mini_e-learning/e-learning/Copilot_20251005_181146.png"
+      }
+    ];
 
     const courseListDiv = document.querySelector(".course-list");
     const homeSection = document.querySelector(".home");
